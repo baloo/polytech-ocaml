@@ -12,10 +12,8 @@ type expr =
   | Fun of string * expr
   | Cond of expr * expr * expr
 
-  | Binop of expr*expr*binop
- (* | Add of expr * expr
-  | Egal of expr * expr
-  | Not of expr*)
+  | Binop of binop*expr*expr
+  | Not of expr
 
 ;;
 
@@ -33,13 +31,12 @@ let rec tostring e = match e with
   (* Le cond est du type expr*expr*expr *)
   | Cond (e1, e2, e3) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ " " ^ tostring e3 ^ ")"
 
-  | Binop (e1, e2, bop) -> (match(bop) with
+  | Binop (bop, e1, e2) -> (match(bop) with
         | Plus -> "(" ^ tostring e1 ^ " + " ^ tostring e2 ^ ")"
         | Minus -> "(" ^ tostring e1 ^ " - " ^ tostring e2 ^ ")"
         | Equals -> "(" ^ tostring e1 ^ " == " ^ tostring e2 ^ ")"
         )
- (* | Add (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ ")"
-  | Egal (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^")"
-  | Not (e1) -> "(" ^ tostring e1 ^")"*)
+  (* Le Not est du type expr *)
+  | Not (e1) -> "(" ^ tostring e1 ^")"
   ;;
  

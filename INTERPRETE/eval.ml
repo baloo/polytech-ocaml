@@ -15,7 +15,8 @@ let rec subst x v e = match e with
 (* Rajout du predicat Cond expr*expr*expr *)
   | Cond (e1, e2, e3) -> Cond( subst x v e1, subst x v e2, subst x v e3)
 (* Rajout de l'operateur binaire Binop expr*expr*binop *)
-  | Binop (e1, e2, bop) -> Binop(subst x v e1, subst x v e2, bop)
+  | Binop (bop, e1, e2) -> Binop(bop, subst x v e1, subst x v e2)
+  | Not (e1) -> Not(subst x v e1)
   
 ;;
 
@@ -41,7 +42,7 @@ let rec eval ex = match ex with
       )
 
 (* Rajout de l'operateur binaire Binop expr*expr*binop *)
-  | Binop (e1, e2, bop) -> (
+  | Binop (bop, e1, e2) -> (
       match (bop) with
         | Plus -> (match(eval e1, eval e2) with
             | (Num f1, Num f2) -> Num (f1+f2)
@@ -60,8 +61,12 @@ let rec eval ex = match ex with
                 else Bool false
             | _ -> failwith "erreur de type"
             )
-            
-            
       )
+  | Not (e1) -> (
+        match(eval e1) with
+            | Bool true -> Bool false
+            | Bool false -> Bool true
+            | _ -> failwith "erreur de type"
+        )
 ;;
 

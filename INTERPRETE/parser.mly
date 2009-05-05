@@ -45,7 +45,7 @@
   expr: 
   | simpleexpr                          { $1                        }
   | simpleexpr simpleexprlist           { make_app $1 (List.rev $2) } /* application associative a gauche */
-/*  | expr BINOP    expr                  { Binop($2,$1,$3)           } */ /* attention, pas de différence entre les opérateurs */
+  | expr BINOP    expr                  { Binop($2,$1,$3)           } /* attention, pas de différence entre les opérateurs */
 /*  | LET IDENT BE expr IN expr           { App (Fun($2,$6), $4)      } */
 /*  | LET REC IDENT BE expr IN expr       { LetRecIn($3,$5,$7)        } */
   | FUN IDENT ARROW expr                { Fun ($2,$4)               } 
