@@ -9,10 +9,10 @@ type expr =
   | App of expr * expr  
 
   | Fun of string * expr
-  | Cond of expr * expr * expr
+(*  | Cond of expr * expr * expr
   | Add of expr * expr
   | Egal of expr * expr
-  | Not of expr
+  | Not of expr*)
 
 ;;
 
@@ -25,9 +25,9 @@ let rec tostring e = match e with
   | App (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ ")"
 
   | Fun (e1, e2) -> "(" ^ e1 ^ " " ^ tostring e2 ^ ")"
-  | Cond (e1, e2, e3) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ " " ^ tostring e3 ^ ")"
+(*  | Cond (e1, e2, e3) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ " " ^ tostring e3 ^ ")"
   | Add (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ ")"
   | Egal (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^")"
-  | Not (e1) -> "(" ^ tostring e1 ^")"
+  | Not (e1) -> "(" ^ tostring e1 ^")"*)
 ;;
  

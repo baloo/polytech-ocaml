@@ -7,6 +7,7 @@ let rec subst x v e = match e with
   | Bool b -> Bool b
   | App (e1, e2) -> App( subst x v e1, subst x v e2)   
 
+  | Fun (e1, e2) -> Fun( e1, subst x v e2)
 ;;
 
 let rec eval ex = match ex with 
@@ -19,6 +20,7 @@ let rec eval ex = match ex with
 
   | Bool b -> Bool b
 
+  | Fun (e1, e2) -> Fun( e1, e2)
 
 ;;
 
