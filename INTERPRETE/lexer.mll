@@ -29,7 +29,7 @@
     | '('            { LPAREN }
     | ')'            { RPAREN }
 (*    | "<="           { BINOP(Expr.Inf)    } *)
-(*    | "=="           { BINOP(Expr.Equals)} *)
+    | "=="           { BINOP(Expr.Equals)}
     | '='            { BE }
     | eof            { EOF }
     

@@ -14,6 +14,9 @@ let rec subst x v e = match e with
   | Fun (e1, e2) -> Fun( e1, subst x v e2)
 (* Rajout du predicat Cond expr*expr*expr *)
   | Cond (e1, e2, e3) -> Cond( subst x v e1, subst x v e2, subst x v e3)
+(* Rajout de l'operateur binaire Binop expr*expr*binop *)
+  | Binop (e1, e2, bop) -> Binop(subst x v e1, subst x v e2, bop)
+  
 ;;
 
 let rec eval ex = match ex with 
@@ -37,5 +40,28 @@ let rec eval ex = match ex with
         | _ -> failwith "not a boolean"
       )
 
+(* Rajout de l'operateur binaire Binop expr*expr*binop *)
+  | Binop (e1, e2, bop) -> (
+      match (bop) with
+        | Plus -> (match(eval e1, eval e2) with
+            | (Num f1, Num f2) -> Num (f1+f2)
+            | _ -> failwith "erreur de type"
+            )
+        | Minus -> (match(eval e1, eval e2) with
+            | (Num f1, Num f2) -> Num (f1-f2)
+            | _ -> failwith "erreur de type"
+            )
+        | Equals -> (match(eval e1, eval e2) with
+            | (Num n1, Num n2)  -> if n1 = n2
+                then Bool true
+                else Bool false
+            | (Bool b1, Bool b2) -> if b1 = b2
+                then Bool true
+                else Bool false
+            | _ -> failwith "erreur de type"
+            )
+            
+            
+      )
 ;;
 
