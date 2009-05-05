@@ -2,3 +2,4 @@ exec
 *.cmo
 *.cmi
 parser.ml
+lexer.ml
