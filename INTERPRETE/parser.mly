@@ -45,16 +45,16 @@
   | simpleexpr                          { $1                        }
   | simpleexpr simpleexprlist           { make_app $1 (List.rev $2) } /* application associative a gauche */
 /*  | expr BINOP    expr                  { Binop($2,$1,$3)           } */ /* attention, pas de différence entre les opérateurs */
-/*  | LET IDENT BE expr IN expr           { App (Fun($2,$6), $4)      } */
+  | LET IDENT BE expr IN expr           { App (Fun($2,$6), $4)      }
 /*  | LET REC IDENT BE expr IN expr       { LetRecIn($3,$5,$7)        } */
-/*  | FUN IDENT ARROW expr                { Fun ($2,$4)               } */      
+  | FUN IDENT ARROW expr                { Fun ($2,$4)               }
   ;
   
   simpleexpr:
   | LPAREN expr RPAREN                  { $2                        }
   | INT                                 { Num $1                    }
   | IDENT                               { Var $1                    }
-/*  | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }  */    
+  | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }
   ;
   
   simpleexprlist:
