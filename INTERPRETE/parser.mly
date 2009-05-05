@@ -8,6 +8,7 @@
   let rec make_app e l = match l with
     | a :: [] -> App(e,a)
     | a :: r -> make_app (App (e,a)) r
+    | [] -> failwith "Liste vide"
  ;;
 
  %}
