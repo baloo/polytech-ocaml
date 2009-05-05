@@ -8,6 +8,7 @@
   let rec make_app e l = match l with
     | a :: [] -> App(e,a)
     | a :: r -> make_app (App (e,a)) r
+    (* On a rajoute la ligne suivante pour enlever le warning de compil *)
     | [] -> failwith "Liste vide"
  ;;
 
@@ -54,7 +55,7 @@
   | LPAREN expr RPAREN                  { $2                        }
   | INT                                 { Num $1                    }
   | IDENT                               { Var $1                    }
-/*  | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }  */    
+  | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }
   ;
   
   simpleexprlist:
