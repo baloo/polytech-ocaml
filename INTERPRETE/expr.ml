@@ -24,6 +24,8 @@ let rec tostring e = match e with
   | Bool false -> "false"
   | App (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ ")"
 
+  (* Pour fun on a pas besoin de tostring le premier parametre,
+     c'est deja une string *)
   | Fun (e1, e2) -> "(" ^ e1 ^ " " ^ tostring e2 ^ ")"
 (*  | Cond (e1, e2, e3) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ " " ^ tostring e3 ^ ")"
   | Add (e1, e2) -> "(" ^ tostring e1 ^ " " ^ tostring e2 ^ ")"
