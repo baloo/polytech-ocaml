@@ -1,5 +1,6 @@
 exec
 *.cmo
 *.cmi
+*.mli
 parser.ml
 lexer.ml
