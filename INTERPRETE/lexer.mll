@@ -24,7 +24,7 @@
     | '+'            { BINOP (Expr.Plus) } 
     | "->"           { ARROW }
     | '-'            { BINOP(Expr.Minus) }
-      (*    | '*'            { BINOP(Expr.Times) } *)
+    | '*'            { BINOP(Expr.Times) }
 (*    | '/'            { BINOP(Expr.Div)   } *)
     | '('            { LPAREN }
     | ')'            { RPAREN }

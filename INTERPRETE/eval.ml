@@ -52,6 +52,10 @@ let rec eval ex = match ex with
             | (Num f1, Num f2) -> Num (f1-f2)
             | _ -> failwith "erreur de type"
             )
+        | Mult -> (match(eval e1, eval e2) with
+            | (Num f1, Num f2) -> Num (f1-f2)
+            | _ -> failwith "erreur de type"
+            )
         | Equals -> (match(eval e1, eval e2) with
             | (Num n1, Num n2)  -> if n1 = n2
                 then Bool true
