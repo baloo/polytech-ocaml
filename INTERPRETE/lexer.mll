@@ -29,6 +29,7 @@
     | '('            { LPAREN }
     | ')'            { RPAREN }
     | "<="           { BINOP(Expr.Inf)    }
+    | ">="           { BINOP(Expr.Sup)    }
     | "=="           { BINOP(Expr.Equals)}
     | "^"            { BINOP(Expr.Exp)}
     | '='            { BE }
