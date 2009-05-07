@@ -65,6 +65,12 @@ let rec eval ex = match ex with
                 else Bool false
             | _ -> failwith "erreur de type"
             )
+        | Div -> (match(eval e1, eval e2) with
+            | (Num n1, Num n2)  -> if n2 != 0
+                then Num(n1/n2)
+                else failwith "Division by Zero"
+            | _ -> failwith "erreur de type"
+            )
         | Inf -> (match(eval e1, eval e2) with
             | (Num n1, Num n2)  -> if n1 <= n2
                 then Bool true
