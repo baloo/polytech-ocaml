@@ -41,7 +41,7 @@ let rec eval ex = match ex with
         | _ -> failwith "not a boolean"
       )
 
-(* Rajout de l'operateur binaire Binop expr*expr*binop *)
+(* Rajout de l'operateur binaire Binop binop*expr*expr *)
   | Binop (bop, e1, e2) -> (
       match (bop) with
         | Plus -> (match(eval e1, eval e2) with
@@ -52,8 +52,8 @@ let rec eval ex = match ex with
             | (Num f1, Num f2) -> Num (f1-f2)
             | _ -> failwith "erreur de type"
             )
-        | Mult -> (match(eval e1, eval e2) with
-            | (Num f1, Num f2) -> Num (f1-f2)
+        | Times -> (match(eval e1, eval e2) with
+            | (Num f1, Num f2) -> Num (f1*f2)
             | _ -> failwith "erreur de type"
             )
         | Equals -> (match(eval e1, eval e2) with
