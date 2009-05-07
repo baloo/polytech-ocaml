@@ -28,7 +28,7 @@
 (*    | '/'            { BINOP(Expr.Div)   } *)
     | '('            { LPAREN }
     | ')'            { RPAREN }
-(*    | "<="           { BINOP(Expr.Inf)    } *)
+    | "<="           { BINOP(Expr.Inf)    }
     | "=="           { BINOP(Expr.Equals)}
     | '='            { BE }
     | eof            { EOF }

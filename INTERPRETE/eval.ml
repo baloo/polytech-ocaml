@@ -65,6 +65,12 @@ let rec eval ex = match ex with
                 else Bool false
             | _ -> failwith "erreur de type"
             )
+        | Inf -> (match(eval e1, eval e2) with
+            | (Num n1, Num n2)  -> if n1 <= n2
+                then Bool true
+                else Bool false
+            | _ -> failwith "erreur de type"
+            )
       )
   | Not (e1) -> (
         match(eval e1) with
