@@ -20,6 +20,7 @@ let rec subst x v e = match e with
   
 ;;
 
+
 let rec eval ex = match ex with 
   
   | Num f -> Num f
@@ -77,6 +78,10 @@ let rec eval ex = match ex with
                 else Bool false
             | _ -> failwith "erreur de type"
             )
+        | Exp -> (match(eval e1, eval e2) with
+            | (Num n1, Num n2)  -> Num(int_of_float(float_of_int(n1) ** float_of_int(n2)))
+            | _ -> failwith "erreur de type"
+            )
       )
   | Not (e1) -> (
         match(eval e1) with
@@ -85,4 +90,5 @@ let rec eval ex = match ex with
             | _ -> failwith "erreur de type"
         )
 ;;
+
 

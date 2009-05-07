@@ -30,6 +30,7 @@
     | ')'            { RPAREN }
     | "<="           { BINOP(Expr.Inf)    }
     | "=="           { BINOP(Expr.Equals)}
+    | "^"            { BINOP(Expr.Exp)}
     | '='            { BE }
     | eof            { EOF }
     
