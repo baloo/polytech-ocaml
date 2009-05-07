@@ -1,6 +1,6 @@
 (* vim: ts=4 sw=4 expandtab:
 *)
- type binop = Plus | Minus | Equals | Times | Inf | Div | Exp | Sup
+ type binop = Plus | Minus | Equals | Times | Inf | Div | Exp | Sup | And | Or
 
 
 type expr = 
@@ -40,6 +40,7 @@ let rec tostring e = match e with
         | Div -> "(" ^ tostring e1 ^ " / " ^ tostring e2 ^ ")"
         | Exp -> "(" ^ tostring e1 ^ " ^ " ^ tostring e2 ^ ")"
         | Sup -> "(" ^ tostring e1 ^ " >= " ^ tostring e2 ^ ")"
+        | And -> "(" ^ tostring e1 ^ " && " ^ tostring e2 ^ ")"
         )
   (* Le Not est du type expr *)
   | Not (e1) -> "(" ^ tostring e1 ^")"

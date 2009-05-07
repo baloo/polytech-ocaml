@@ -32,6 +32,8 @@
     | ">="           { BINOP(Expr.Sup)    }
     | "=="           { BINOP(Expr.Equals)}
     | "^"            { BINOP(Expr.Exp)}
+    | "&&"           { BINOP(Expr.And)}
+    | "||"           { BINOP(Expr.Or)}
     | '='            { BE }
     | eof            { EOF }
     
