@@ -34,4 +34,8 @@ eval.cmo:	expr.cmo
 main.cmo:	expr.cmo eval.cmo parser.cmo
 
 clean :
-	rm *.cmo *.cmi lexer.ml parser.ml parser.mli 
+	rm *.cmo *.cmi lexer.ml parser.ml parser.mli
+
+test :
+	@./test.sh
+
