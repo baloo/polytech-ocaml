@@ -41,6 +41,7 @@ let rec tostring e = match e with
         | Exp -> "(" ^ tostring e1 ^ " ^ " ^ tostring e2 ^ ")"
         | Sup -> "(" ^ tostring e1 ^ " >= " ^ tostring e2 ^ ")"
         | And -> "(" ^ tostring e1 ^ " && " ^ tostring e2 ^ ")"
+        | Or -> "(" ^ tostring e1 ^ " || " ^ tostring e2 ^ ")"
         )
   (* Le Not est du type expr *)
   | Not (e1) -> "(" ^ tostring e1 ^")"

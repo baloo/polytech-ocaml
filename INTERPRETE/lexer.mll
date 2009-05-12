@@ -19,6 +19,8 @@
                 | "rec"  -> REC 
                 | "in"   -> IN
                 | "fun" -> FUN
+                | "true" -> TRUE
+                | "false" -> FALSE
                 
                 | _ -> IDENT(lxm) }
     | '+'            { BINOP (Expr.Plus) } 

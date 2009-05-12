@@ -24,6 +24,8 @@
 %token IF THEN ELSE FI
 %token LET REC BE IN 
 %token LPAREN RPAREN
+%token TRUE 
+%token FALSE
 %token FUN ARROW
 %token EOF
 %token BINOP
@@ -55,6 +57,9 @@
   | LPAREN expr RPAREN                  { $2                        }
   | INT                                 { Num $1                    }
   | IDENT                               { Var $1                    }
+  | TRUE                                { Bool true                 }
+  | FALSE                               { Bool false                }
+
   | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }
   ;
   
