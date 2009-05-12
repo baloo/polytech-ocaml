@@ -22,7 +22,6 @@ type expr =
 
 
 (* PrÃ©dicat is_prog indiquant si une expression est un programme ou non*)
-  (*
 let rec is_prog el liste = match el with
   | Var f -> if List.mem f liste then true else false
   | Num f -> true
@@ -31,11 +30,13 @@ let rec is_prog el liste = match el with
   | App (e1, e2) -> is_prog e1 liste && is_prog e2 liste
   | Fun (e1,e2) -> is_prog e2 liste
   | Cond (e1,e2,e3) -> is_prog e1 liste && is_prog e2 liste && is_prog e3 liste
-  | Plus (e1,e2) -> is_prog e1 liste && is_prog e2 liste 
-  | Equals (e1,e2) -> is_prog e1 liste && is_prog e2 liste
   | Binop (op, e1, e2) -> is_prog e1 liste && is_prog e2 liste
+  | CondMult (e1, e2) -> List.fold_right (fun x -> fun y -> match x with
+                                           | (b1, b2) -> is_prog b1 liste && 
+                                                         is_prog b2 liste && 
+                                                         y) e1 true && 
+                         is_prog e2 liste
 ;;
-  *)
 
 
 let rec tostring e = match e with
