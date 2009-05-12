@@ -21,10 +21,15 @@
                 | "fun" -> FUN
                 | "true" -> TRUE
                 | "false" -> FALSE
+                | "cond" -> COND
+                | "dnoc" -> DNOC
                 
                 | _ -> IDENT(lxm) }
     | '+'            { BINOP (Expr.Plus) } 
     | "->"           { ARROW }
+    | "-->"          { AARROW }
+    | '|'            { PIPE }
+    | '_'            { ANY }
     | '-'            { BINOP(Expr.Minus) }
     | '*'            { BINOP(Expr.Times) }
     | '/'            { BINOP(Expr.Div)   }

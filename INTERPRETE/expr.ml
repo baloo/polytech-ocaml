@@ -15,7 +15,27 @@ type expr =
   | Binop of binop*expr*expr
   | Not of expr
 
+  | CondMult of (expr*expr) list*expr
+
 ;;
+
+
+
+(* PrÃ©dicat is_prog indiquant si une expression est un programme ou non*)
+  (*
+let rec is_prog el liste = match el with
+  | Var f -> if List.mem f liste then true else false
+  | Num f -> true
+  | Bool _ -> true
+  | Not f -> is_prog f liste
+  | App (e1, e2) -> is_prog e1 liste && is_prog e2 liste
+  | Fun (e1,e2) -> is_prog e2 liste
+  | Cond (e1,e2,e3) -> is_prog e1 liste && is_prog e2 liste && is_prog e3 liste
+  | Plus (e1,e2) -> is_prog e1 liste && is_prog e2 liste 
+  | Equals (e1,e2) -> is_prog e1 liste && is_prog e2 liste
+  | Binop (op, e1, e2) -> is_prog e1 liste && is_prog e2 liste
+;;
+  *)
 
 
 let rec tostring e = match e with
@@ -45,5 +65,10 @@ let rec tostring e = match e with
         )
   (* Le Not est du type expr *)
   | Not (e1) -> "(" ^ tostring e1 ^")"
+
+  | CondMult(rulelist, default) -> "cond " ^ List.fold_right (fun x -> fun y -> match x with
+                                                              | (e1,e2) -> y ^ "| " ^ tostring e1 ^ " -> " ^ tostring e2 ^ "\n")
+                                             rulelist ("\n _ -> " ^ tostring default ^ " )")
+  
   ;;
  

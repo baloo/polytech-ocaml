@@ -17,6 +17,10 @@ let rec subst x v e = match e with
 (* Rajout de l'operateur binaire Binop expr*expr*binop *)
   | Binop (bop, e1, e2) -> Binop(bop, subst x v e1, subst x v e2)
   | Not (e1) -> Not(subst x v e1)
+
+  | CondMult(e1, e2) -> CondMult(List.map (fun e -> match e with 
+                                   | (b1,b2) -> (subst x v b1, subst x v b2)
+                                   ) e1, subst x v e2)
   
 ;;
 
@@ -111,6 +115,18 @@ let rec eval ex = match ex with
             | Bool false -> Bool true
             | _ -> failwith "erreur de type"
         )
+  | CondMult(e1,e2) -> (
+        match e1 with 
+          | b1::b2 -> (match b1 with 
+            | (c1,c2) -> (match (eval c1, c2) with
+              | (Bool true, d2) -> eval d2
+              | (Bool false, d2) -> eval(CondMult(b2,e2))
+              | _ -> failwith "Erreur de type"
+                         )
+                      )
+          | [] -> eval e2
+        )
+        
 ;;
 
 

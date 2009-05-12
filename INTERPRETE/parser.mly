@@ -29,7 +29,7 @@
 %token FUN ARROW
 %token EOF
 %token BINOP
-  
+%token PIPE AARROW COND DNOC ANY
 
 /* gestion des priorités/associativités */
 %left BINOP
@@ -61,7 +61,13 @@
   | FALSE                               { Bool false                }
 
   | IF expr THEN expr ELSE expr FI      { Cond ($2, $4, $6)         }
+  | COND rulelist ANY AARROW expr DNOC  { CondMult($2,$5)           }
+  
   ;
+
+  rulelist:
+  | expr AARROW expr PIPE               { ($1, $3)::[]              }
+  | expr AARROW expr PIPE rulelist      { ($1, $3)::$5              }
   
   simpleexprlist:
   | simpleexpr { [$1] }
