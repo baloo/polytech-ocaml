@@ -17,6 +17,8 @@ type expr =
 
   | CondMult of (expr*expr) list*expr
 
+  | LetRecIn of string*expr*expr
+
 ;;
 
 
@@ -31,6 +33,7 @@ let rec is_prog el liste = match el with
   | Fun (e1,e2) -> is_prog e2 liste
   | Cond (e1,e2,e3) -> is_prog e1 liste && is_prog e2 liste && is_prog e3 liste
   | Binop (op, e1, e2) -> is_prog e1 liste && is_prog e2 liste
+  | LetRecIn (e1, e2, e3) -> let liste2 = e1::liste in is_prog e2 liste2 && is_prog e3 liste2
   | CondMult (e1, e2) -> List.fold_right (fun x -> fun y -> match x with
                                            | (b1, b2) -> is_prog b1 liste && 
                                                          is_prog b2 liste && 
@@ -66,6 +69,8 @@ let rec tostring e = match e with
         )
   (* Le Not est du type expr *)
   | Not (e1) -> "(" ^ tostring e1 ^")"
+
+  | LetRecIn(e1, e2, e3) -> "let rec " ^ e1 ^ " = " ^ tostring e2 ^ " in " ^ tostring e3 
 
   | CondMult(rulelist, default) -> "cond " ^ List.fold_right (fun x -> fun y -> match x with
                                                               | (e1,e2) -> y ^ "| " ^ tostring e1 ^ " -> " ^ tostring e2 ^ "\n")
